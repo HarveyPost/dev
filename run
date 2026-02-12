@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+runs_dir="$script_dir/runs"
+
+dry_run="0"
+filter=""
+
+usage() {
+    cat <<'EOF'
+Usage: ./run [--dry] [filter]
+
+Runs every executable script in ./runs.
+If filter is provided, only script names containing that text are run.
+
+Examples:
+  ./run
+  ./run neovim
+  ./run --dry
+  ./run --dry tmux
+EOF
+}
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --dry)
+            dry_run="1"
+            shift
+            ;;
+        -h|--help)
+            usage
+            exit 0
+            ;;
+        *)
+            if [[ -n "$filter" ]]; then
+                echo "only one filter is supported"
+                usage
+                exit 1
+            fi
+            filter="$1"
+            shift
+            ;;
+    esac
+done
+
+log() {
+    if [[ "$dry_run" == "1" ]]; then
+        echo "[DRY_RUN] $*"
+    else
+        echo "$*"
+    fi
+}
+
+if [[ ! -d "$runs_dir" ]]; then
+    echo "runs directory not found: $runs_dir"
+    exit 1
+fi
+
+log "starting run: filter='${filter:-<none>}'"
+
+shopt -s nullglob
+scripts=("$runs_dir"/*)
+
+ran_any="0"
+
+for script in "${scripts[@]}"; do
+    [[ -f "$script" ]] || continue
+    [[ -x "$script" ]] || continue
+
+    name="$(basename "$script")"
+
+    if [[ -n "$filter" && "$name" != *"$filter"* ]]; then
+        log "skip: $name (filtered out)"
+        continue
+    fi
+
+    log "run: $name"
+    ran_any="1"
+
+    if [[ "$dry_run" == "0" ]]; then
+        "$script"
+    fi
+done
+
+if [[ "$ran_any" == "0" ]]; then
+    log "no matching executable scripts found"
+fi

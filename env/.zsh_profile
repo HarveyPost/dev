@@ -1,0 +1,11 @@
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export VIM="nvim"
+export DEV_ENV="$HOME/dev"
+
+PERSONAL="$XDG_CONFIG_HOME/personal"
+if [[ -d "$PERSONAL" ]]; then
+    for file in "$PERSONAL"/*(N); do
+        [[ -f "$file" ]] || continue
+        source "$file"
+    done
+fi
