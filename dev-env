@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-set -euo pipefail
-
 dry_run="0"
 
 if [ -z "$XDG_CONFIG_HOME" ]; then
@@ -20,9 +18,9 @@ fi
 
 log() {
     if [[ $dry_run == "1" ]]; then
-        echo "[DRY_RUN] $*"
+        echo "[DRY_RUN] $1"
     else
-        echo "$*"
+        echo "$1"
     fi
 }
 
