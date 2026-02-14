@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-sudo pacman -S --noconfirm --needed gimp tldr
+sudo pacman -S --noconfirm --needed gimp tldr go nodejs npm
+sudo pacman -S --noconfirm --needed go
