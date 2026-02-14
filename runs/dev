@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-sudo pacman -S --noconfirm --needed gimp tldr go nodejs npm
+sudo pacman -S --noconfirm --needed gimp tldr go nodejs npm fzf
 sudo pacman -S --noconfirm --needed go
