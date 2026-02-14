@@ -19,7 +19,7 @@ if [[ $1 == "--dry" ]]; then
 fi
 
 log() {
-    if [[ "$dry_run" == "1" ]]; then
+    if [[ $dry_run == "1" ]]; then
         echo "[DRY_RUN] $*"
     else
         echo "$*"
