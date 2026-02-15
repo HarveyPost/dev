@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+hypr
+xdg-open https://search.brave.com/search?q={}&source=desktop
