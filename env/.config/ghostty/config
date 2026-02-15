@@ -1,6 +1,4 @@
-
 background = 000000
 background-blur = false
 confirm-close-surface = false
-font-family = "Monospace"
-font-size = 22
+font-size = 20
