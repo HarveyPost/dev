@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
 sudo pacman -S --noconfirm --needed gimp tldr go nodejs npm fzf rofi-wayland waybar go
+
+sudo pacman -S --noconfirm ttf-jetbrains-mono ttf-font-awesome ttf-nerd-fonts-symbols
