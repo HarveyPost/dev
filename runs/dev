@@ -7,3 +7,5 @@ sudo pacman -S --noconfirm ttf-jetbrains-mono-nerd ttf-font-awesome ttf-nerd-fon
 sudo pacman -S --noconfirm --needed hyprlock
 
 paru -Syu wlogout-git --noconfirm --needed
+
+sudo pacman -S --noconfirm --needed hyprpaper

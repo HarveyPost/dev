@@ -102,4 +102,5 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ros="apptainer shell comp3631.simg"
 source ~/.zsh_profile
